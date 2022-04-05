@@ -15,10 +15,10 @@
         resizable={item[getComputedCols] && item[getComputedCols].resizable}
         draggable={item[getComputedCols] && item[getComputedCols].draggable}
         {xPerPx}
-        {yPerPx}
+        {rowHeight}
         width={Math.min(getComputedCols, item[getComputedCols] && item[getComputedCols].w) * xPerPx - gapX * 2}
-        height={(item[getComputedCols] && item[getComputedCols].h) * yPerPx - gapY * 2}
-        top={(item[getComputedCols] && item[getComputedCols].y) * yPerPx + gapY}
+        height={(item[getComputedCols] && item[getComputedCols].h) * rowHeight - gapY * 2}
+        top={(item[getComputedCols] && item[getComputedCols].y) * rowHeight + gapY}
         left={(item[getComputedCols] && item[getComputedCols].x) * xPerPx + gapX}
         item={item[getComputedCols]}
         min={item[getComputedCols] && item[getComputedCols].min}
@@ -68,13 +68,12 @@
   $: [gapX, gapY] = gap;
 
   let xPerPx = 0;
-  let yPerPx = rowHeight;
 
   let documentWidth;
 
   let containerWidth;
 
-  $: containerHeight = getContainerHeight(items, yPerPx, getComputedCols);
+  $: containerHeight = getContainerHeight(items, rowHeight, getComputedCols);
 
   const pointerup = (ev) => {
     dispatch("pointerup", {
@@ -88,7 +87,7 @@
     dispatch("resize", {
       cols: getComputedCols,
       xPerPx,
-      yPerPx,
+      rowHeight,
       width: containerWidth,
     });
   }, throttleUpdate);
