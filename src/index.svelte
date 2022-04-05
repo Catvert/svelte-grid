@@ -15,7 +15,7 @@
         resizable={item[getComputedCols] && item[getComputedCols].resizable}
         draggable={item[getComputedCols] && item[getComputedCols].draggable}
         {xPerPx}
-        {rowHeight}
+        yPerPx={rowHeight}
         width={Math.min(getComputedCols, item[getComputedCols] && item[getComputedCols].w) * xPerPx - gapX * 2}
         height={(item[getComputedCols] && item[getComputedCols].h) * rowHeight - gapY * 2}
         top={(item[getComputedCols] && item[getComputedCols].y) * rowHeight + gapY}
@@ -109,7 +109,7 @@
           dispatch("mount", {
             cols: getComputedCols,
             xPerPx,
-            rowHeight, // same as rowHeight
+            yPerPx: rowHeight, // same as rowHeight
           });
         } else {
           onResize();
