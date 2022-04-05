@@ -109,7 +109,7 @@
           dispatch("mount", {
             cols: getComputedCols,
             xPerPx,
-            yPerPx, // same as rowHeight
+            rowHeight, // same as rowHeight
           });
         } else {
           onResize();
